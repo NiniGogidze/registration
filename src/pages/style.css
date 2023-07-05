@@ -1,0 +1,43 @@
+.topnav {
+    overflow: hidden;
+    background-color: rgb(240, 236, 236);
+    height: 70px;
+    display: flex;
+}
+  
+.link {
+    float: left;
+    color: grey;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin-top: 10px;
+}
+  
+.dark {
+    background-color: black;
+    color: white;
+}
+.light {
+    background-color: white;
+    color: black;
+}
+
+button {
+    width: 150px;
+    height: 50px;
+    color: white;
+    background-color: blue;
+    border-radius: 30px;
+    border: blue;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+h2{
+    color: black;
+}
+  
+
+  

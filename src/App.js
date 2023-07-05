@@ -1,35 +1,41 @@
-import Registration from "./folder/Registration";
-import {useState} from "react";
+import {Routes, Route} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import "./pages/style.css";
+import { MyContext } from "./MyContext";
+import React, { useState, useEffect } from 'react';
+
+import Home from './pages/Home';
+import About from './pages/About';
 
 
 function App() {
-  const [emailAddress, setEmailAddress] = useState ("");
-  const [password, setPassword] = useState ("");
-
-  const handleSubmit = () => {
-    const data = {
-      emailAddress,
-      password
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
     }
-    console.log(data) 
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
-    if (emailAddress.trim().length === 0 && password.trim().length === 0) {
-      return alert ('შეავსე ყველა ველი')
-    }
-
-    if (password.length < 8) {
-      return alert ('მაქსიმუმ რვა სიმბოლოა საჭირო')
-    }
-  }
-
-  console.log({emailAddress})
-  console.log({password})
   return (
-    <div className="App">
-      <Registration />
-      <input type="email" name="Email address" placeholder="Email address" onChange={(e) => setEmailAddress(e.target.value)} className="first-input"/>
-      <input type="password" name="Password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} className="second-input"/>
-      <button onClick={handleSubmit}>create accaunt</button>
+    <div className='App'>
+      <MyContext.Provider>
+      <div className='topnav'>
+        <h2>re:educate</h2>
+        <Link to="/" className='link'>home</Link>
+        <Link to="/about" className='link'>about</Link>
+        <button onClick={toggleTheme}>DARK MODE</button>
+      </div>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/about' element={<About />}/>
+      </Routes>
+      </MyContext.Provider>
+      
     </div>
   );
 }
